@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Models;
 using WebApplication1.Models.DTO_s;
+using WebApplication1.Models.DTO_s.Response;
 
 namespace WebApplication1.Services
 {
@@ -14,9 +15,13 @@ namespace WebApplication1.Services
         {
             _context = context;
         }
-        public async Task<Album> GetAlbum(int id)
+        public async Task<AlbumRes> GetAlbum(int id)
         {
-            return _context.Albums.Single(a => a.IdAlbum == id);
+            return _context.Albums.Select(a => new AlbumRes
+            {
+                Album = a,
+                Tracks = a.Tracks.OrderBy(t => t.Duration).ToList()
+            }).Single() ;
         }
         public async Task<bool> DeleteMusician(int id)
         {

@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\DTO%27s\Response\" />
     <Folder Include="Models\DTO%27s\Request\" />
   </ItemGroup>
 
